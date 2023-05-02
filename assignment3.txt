@@ -1,0 +1,54 @@
+ASSIGNMENT – 3
+DATE – 14/02/2023
+
+QUESTION:
+To draw diagram to configure 3 pcs, 1 switch, 1 server (using DNS Configuration). Set the IP of each PC dynamically using DHCP Configuration. Set up the email server within the network.
+
+OUTPUT:
+ 
+ 
+CODE:
+
+ADDRESSING:
+server0
+IPv4 Address: 192.168.1.1
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.0
+DNS Server: 8.8.8.8
+DHCP Name: ServerPool1
+DNS Name: Server
+Email Domain name: gmail.com
+Users: Machine1
+            Machine2
+            Machine3
+
+pc0
+IPv4 Address (DHCP): 192.168.1.4
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.0
+DNS Server: 8.8.8.8
+Email User Name: Machine1
+Email Address: machine1@gmail.com
+Email Server (Incoming/Outgoing): 192.168.1.1
+
+
+
+pc1
+IPv4 Address (DHCP): 192.168.1.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.0
+DNS Server: 8.8.8.8
+Email User Name: Machine2
+Email Address: machine2@gmail.com
+Email Server (Incoming/Outgoing): 192.168.1.1
+
+
+pc2
+IPv4 Address (DHCP): 192.168.1.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.0
+DNS Server: 8.8.8.8
+Email User Name: Machine3
+Email Address: machine3@gmail.com
+Email Server (Incoming/Outgoing): 192.168.1.1
+

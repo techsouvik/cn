@@ -1,0 +1,171 @@
+ASSIGNMENT - 6
+DATE - 23/03/2023
+
+QUESTION:
+Standard Number Access Control List(ACL)
+
+OUTPUT:
+
+
+
+CODE:
+router0(DCE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.10.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface gi 0/1
+(config-if)# ip address 192.168.11.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.1 255.0.0.0
+(config-if)# clock rate 64000
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.10.0
+(config-router)# network 10.0.0.0
+(config-router)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.11.0
+(config-router)# network 10.0.0.0
+(config-router)# exit
+router1(DCE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.12.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.2 255.0.0.0
+(config-if)# clock rate 64000
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.12.0
+(config-router)# network 10.0.0.0
+(config-router)# exit
+
+FOR ACL:
+router0(DCE):
+(config)# access-list 2 deny 192.168.10.0 0.0.0.255
+(config)# access-list 2 permit any
+(config)# interface se 0/0/0
+(config-if)# ip access-group 2 out
+
+pc0
+IPv4 Address: 192.168.10.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc1
+IPv4 Address: 192.168.10.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc3
+IPv4 Address: 192.168.11.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+
+pc4
+IPv4 Address: 192.168.11.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+
+server0
+IPv4 Address: 192.168.12.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.12.1
+
+
+
+
+QUESTION:
+Extended Number Access Control List(ACL)
+
+OUTPUT:
+
+
+
+
+
+CODE:
+router0(DCE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.10.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface gi 0/1
+(config-if)# ip address 192.168.11.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.1 255.0.0.0
+(config-if)# clock rate 64000
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.10.0
+(config-router)# network 10.0.0.0
+(config-router)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.11.0
+(config-router)# network 10.0.0.0
+(config-router)# exit
+router1(DCE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.12.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.2 255.0.0.0
+(config-if)# clock rate 64000
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.12.0
+(config-router)# network 10.0.0.0
+(config-router)# exit
+
+FOR ACL:
+router0(DCE):
+(config)# access-list 115 deny tcp 192.168.10.0 0.0.0.255 192.168.12.2 0.0.0.0    
+                 eq 80
+(config)# access-list 115 permit ip any any
+(config)# interface gi 0/0
+(config-if)# ip access-group 115 out
+
+pc0
+IPv4 Address: 192.168.10.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc1
+IPv4 Address: 192.168.10.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc3
+IPv4 Address: 192.168.11.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+
+pc4
+IPv4 Address: 192.168.11.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+
+server0
+IPv4 Address: 192.168.12.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.12.1
+

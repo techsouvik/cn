@@ -1,0 +1,103 @@
+ASSIGNMENT – 2
+DATE – 09/02/2023
+
+QUESTION:
+rip2 routing protocol
+
+OUTPUT:
+ 
+
+CODE:
+router1(DTE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.10.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.1 255.0.0.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router rip
+(config-router)# network 192.168.10.0
+(config-router)# network 10.0.0.0
+(config-router)# version 2
+
+router2(DCE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.11.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.2 255.0.0.0
+(config-if)# clock rate 64000
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router rip
+(config-router)# network 192.168.11.0
+(config-router)# network 10.0.0.0
+(config-router)# version 2
+ 
+pc1
+IPv4 Address: 192.168.10.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc2
+IPv4 Address: 192.168.11.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+
+ 
+QUESTION:
+eigrp  routing protocol
+
+OUTPUT:
+ 
+
+CODE:
+router1(DTE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.10.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.1 255.0.0.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.10.0
+(config-router)# network 10.0.0.0
+
+router2(DCE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.11.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.2 255.0.0.0
+(config-if)# clock rate 64000
+(config-if)# no shutdown
+(config-if)# exit
+(config)# router eigrp 2
+(config-router)# network 192.168.11.0
+(config-router)# network 10.0.0.0
+
+ 
+pc1
+IPv4 Address: 192.168.10.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc2
+IPv4 Address: 192.168.11.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+

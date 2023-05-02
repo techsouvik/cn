@@ -1,0 +1,54 @@
+ASSIGNMENT – 1
+DATE – 02/02/2023
+
+QUESTION:
+Single router configuration
+OUTPUT:
+ 
+CODE:
+router
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.10.1 255.255.255.0
+(config-if)# no shutdown
+pc
+IPv4 Address:192.168.10.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+laptop
+IPv4 Address:192.168.10.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+QUESTION:
+Static routing protocol
+OUTPUT:
+ 
+CODE:
+router1(DTE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.10.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.1 255.0.0.0
+(config-if)# no shutdown
+(config-if)# ip route 192.168.11.0 255.255.255.0 10.0.0.0
+
+
+
+router2(DCE)
+>  en
+# config
+(config)# interface gi 0/0
+(config-if)# ip address 192.168.11.1 255.255.255.0
+(config-if)# no shutdown
+(config-if)# exit
+(config)# interface se 0/0/0
+(config-if)# ip address 10.0.0.2 255.0.0.0
+(config-if)# clock rate 64000
+(config-if)# no shutdown
+(config-if)# ip route 192.168.10.0 255.255.255.0 10.0.0.0

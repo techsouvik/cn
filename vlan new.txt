@@ -1,0 +1,21 @@
+>en
+#config terminal
+#vlan 2
+#name CSE
+#vlan 3
+#name IT
+#exit
+#interface range fa 0/1 – 2
+#switchport mode access
+#switchport access vlan 2
+#exit
+#interface range fa 0/3 – 4
+#switchport mode access
+#switchport access vlan 3
+#exit
+<Router Code>
+#interface gi 0/0
+#switchport mode trunk
+#exit
+#exit
+#show vlan brief

@@ -1,0 +1,57 @@
+CODE:
+switch0
+>  en
+# vlan database
+#(vlan) vlan 2 name CSE
+#(vlan) vlan 3 name IT
+# exit
+# config terminal
+# interface range 0/2 – 3
+# switchport mode access
+# switchport access vlan 2
+# exit
+# interface range 0/4 – 5
+# switchport mode access
+# switchport access vlan 3
+
+router0
+> en
+# config terminal
+# interface gi 0/0
+# no shutdown
+# interface gi 0/0.1
+# encapsulation dot1q 2
+# ip address 192.168.10.1 255.255.255.0
+# exit
+# interface gi 0/0.2
+# encapsulation dot1q 3
+# ip address 192.168.11.1 255.255.255.0
+
+For inter VLAN:
+swtich0
+>en
+# config terminal
+# interface fa 0/1
+#switchport mode trunk
+Configurations
+pc0
+IPv4 Address: 192.168.10.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc1
+IPv4 Address: 192.168.10.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+
+pc2
+IPv4 Address: 192.168.11.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+
+pc3
+IPv4 Address: 192.168.11.3
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.11.1
+
+

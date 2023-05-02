@@ -1,0 +1,58 @@
+• CODE:
+Router 1 (DCE):
+>en
+#config terminal
+(config)#interface gi 0/0
+(config-if)#ip address 192.168.10.1 255.255.255.0
+(config-if)#no shutdown
+(config-if)#exit
+(config)#interface se 0/1/0
+(config-if)#ip address 10.0.0.1 255.0.0.0
+(config-if)#clock rate 64000
+(config-if)#no shutdown
+(config-if)#exit
+(config)#router ospf 2
+(config-router)#network 192.168.10.0 0.0.0.255 Area 1
+(config-router)#network 10.0.0.0 0.255.255.255 Area 1
+Router 2 (DTE):
+>en
+#config terminal
+(config)#interface gi 0/0
+2 | P a g e
+(config-if)#ip address 192.168.11.1 255.255.255.0
+(config-if)#no shutdown
+(config-if)#exit
+(config)#interface se 0/1/0
+(config-if)#ip address 10.0.0.2 255.0.0.0
+(config-if)#no shutdown
+(config-if)#exit
+(config)#router ospf 2
+(config-router)#network 192.168.11.0 0.0.0.255 Area 1
+(config-router)#network 10.0.0.0 0.255.255.255 Area 1
+IPv4 CONFIGURATION:
+PC-PT PC0
+IP Address: 192.168.10.2
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.10.1
+Wild Card Mask: 0.0.0.255
+PC-PT PC1
+IP Address: 192.168.11.2
+Subnet Mask: 255.0.0.0
+Default Gateway: 192.168.11.1
+Wild Card Mask: 0.255.255.255
+
+
+dhcp:
+OBJECTIVE: To assign IP addresses to a network of 4 
+terminals using the access point DHCP protocol.
+• CODE:
+>en
+#config terminal
+(config)#interface gi 0/0
+(config-if)#ip address 192.168.10.1 255.255.255.0
+(config-if)#no shutdown
+(config-if)#exit
+(config)#ip dhcp pool a
+(config-dhcp)#network 192.168.10.0 255.255.255.0
+(config-dhcp)#default-router 192.168.10.1
+(config-dhcp)#dns 8.8.8.8
